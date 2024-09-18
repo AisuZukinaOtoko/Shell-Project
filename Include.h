@@ -30,8 +30,6 @@ struct Command {
 	char* outFile;
 };
 
-//int errorOccured = 0;
-
 /*
 * @brief Initialises the shell.
 */

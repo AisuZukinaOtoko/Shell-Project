@@ -3,7 +3,6 @@
 
 #ifdef _WIN32
 void logError() {
-	errorOccured = 1;
 	char error_message[30] = "An error has occurred\n";
 	printf("%s", error_message);
 }
@@ -16,7 +15,6 @@ void logError() {
 
 int isWhiteSpace(char chr) {
 	return chr <= ' ';
-	//return (chr == ' ' || chr == '\n' || chr == '\t' || chr == '\r');
 }
 
 void tokenize(char* string, size_t size) {

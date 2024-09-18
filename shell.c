@@ -223,16 +223,6 @@ pid_t runScript(char* cmd, size_t size) {
 		return -1;
 	}
 
-	if (strcmp(cmd, "print") == 0) {
-		printf("Printing Path List.\n");
-		char* str;
-		int index = 0;
-		while (getPath(&str, index)) {
-			printf("Path %d: %s\n", index, str);
-			index++;
-		}
-		return -1;
-	}
 	pid_t pID = cmdExternal(cmd, &cmd[size]);
 	return pID;
 }
@@ -262,7 +252,6 @@ int runInteractive() {
 	while (fgets(line, sizeof(line), stdin) != NULL) {
 		createCmdList(line);
 		runCommands();
-		//runScript(line, strlen(line));
 		printf("witsshell> ");
 	}
 	return 0;
