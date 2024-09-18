@@ -3,6 +3,7 @@
 
 #ifdef _WIN32
 void logError() {
+	errorOccured = 1;
 	char error_message[30] = "An error has occurred\n";
 	printf("%s", error_message);
 }
@@ -85,4 +86,13 @@ char* concatenate(char* str1, char* str2) {
 	strcat(result, str2);
 
 	return result;
+}
+
+int stringEmpty(char* str){
+	size_t length = strlen(str);
+	for (int i = 0; i < length; i++){
+		if (!isWhiteSpace(str[i]))
+			return 0;
+	}
+	return 1;
 }

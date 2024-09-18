@@ -39,6 +39,12 @@ void addPath(char* path) {
 	if (path == NULL)
 		return;
 
+	char subStr[] = "/";
+	size_t size = strlen(path);
+	if (path[size -1] != '/'){
+		path = concatenate(path, subStr);
+	}
+
 	if (PATH.listCapacity == 0)
 		reallocatePathList(1);
 

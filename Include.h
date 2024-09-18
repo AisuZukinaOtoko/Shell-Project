@@ -3,13 +3,15 @@
 
 #define DELIMETER '\0'
 #define BUFFER_SIZE 256
+#define MAX_PARALLEL_CMD 60
 
 #ifdef _WIN32
 #define _CRT_SECURE_NO_WARNINGS // disable warnings
 #else
 #include <unistd.h>
 #include <sys/wait.h>
-#endif
+#include <fcntl.h>
+#endif // _WIN32
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -21,6 +23,14 @@ struct StringArray {
 	int pathCount;
 	int listCapacity;
 };
+
+struct Command {
+	char* cmd;
+	int redirect;
+	char* outFile;
+};
+
+//int errorOccured = 0;
 
 /*
 * @brief Initialises the shell.
@@ -122,5 +132,13 @@ char* copyString(char* str);
 * @return The new concatenated string
 */
 char* concatenate(char* str1, char* str2);
+
+
+/*
+* @brief Checks if string only contains whitespace
+* @param Strings to be checked.
+* @return 1 if string is empty. 0 otherwise.
+*/
+int stringEmpty(char* str);
 
 #endif // INCLUDE_H
